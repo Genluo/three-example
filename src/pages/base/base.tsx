@@ -107,6 +107,7 @@ function App() {
     <div className="App">
       <div id="WebGL-output"></div>
       <div id="Stats-output"></div>
+      <div id="WebGL-gui"></div>
     </div>
   );
 }
