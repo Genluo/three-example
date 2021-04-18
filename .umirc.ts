@@ -7,6 +7,7 @@ export default defineConfig({
   layout: {
     name: 'THREE.JS',
     theme: 'pro',
+    headerRender: false,
   },
   routes: [
     {
@@ -14,6 +15,21 @@ export default defineConfig({
       path: '/',
       component: '@/pages/base/base',
     },
+    {
+      name: '场景',
+      path: '/scene',
+      component: '@/pages/scene/scene'
+    },
+    {
+      name: '光源',
+      path: '/light',
+      component: '@/pages/light/light'
+    },
+    {
+      name: '材质',
+      path: '/material',
+      component: '@/pages/material/material'
+    }
   ],
   fastRefresh: {},
 });

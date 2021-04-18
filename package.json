@@ -22,12 +22,15 @@
   "dependencies": {
     "@ant-design/pro-layout": "^6.16.3",
     "@umijs/preset-react": "1.x",
+    "dat.gui": "^0.7.7",
+    "stats.js": "^0.17.0",
     "three": "^0.127.0",
     "umi": "^3.4.8"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/stats.js": "^0.17.0",
     "@types/three": "^0.127.1",
     "@umijs/test": "^3.4.8",
     "lint-staged": "^10.0.7",

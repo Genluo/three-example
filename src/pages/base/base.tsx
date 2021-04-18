@@ -14,7 +14,7 @@ function useThree() {
     var renderer = new THREE.WebGLRenderer();
 
     renderer.setClearColor(new THREE.Color(0xEEEEEE));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(1000, 1000);
     renderer.shadowMapEnabled = true;
 
     // create the ground plane
