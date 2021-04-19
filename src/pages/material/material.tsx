@@ -123,9 +123,27 @@ export default class Scene extends Base {
     spotLight.position.set(-50, 50, 50);
     spotLight.castShadow = true;
     this.scene.add(spotLight);
+    this.addLine();
     this.renderer.shadowMapEnabled = true;
     this.renderCanvas();
     this.renderGui();
+  }
+
+
+  addLine = () => {
+    const points = [];
+    points.push( new THREE.Vector3( 0, 0, 0 ) );
+    points.push( new THREE.Vector3( 0, 20, 0 ) );
+    points.push( new THREE.Vector3( 20, 0, 0 ) );
+    const geometry = new THREE.BufferGeometry().setFromPoints( points );
+    const material = new THREE.LineBasicMaterial({
+      opacity: 1.0,
+      linewidth: 10,
+      color: 'red'
+    })
+    const line = new THREE.Line(geometry, material);
+    this.scene.add(line);
+
   }
 
  
@@ -156,7 +174,6 @@ export default class Scene extends Base {
         cube.position.z -= 1;
       }
     });
-
 
     // render using requestAnimationFrame
     requestAnimationFrame(this.renderCanvas);
