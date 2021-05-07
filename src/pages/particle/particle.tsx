@@ -124,6 +124,8 @@ export default class Scene extends Base {
     spotLight.castShadow = true;
     this.scene.add(spotLight);
     this.addLine();
+    this.createSingleSprites();
+    this.createGroupSprites();
     this.renderer.shadowMapEnabled = true;
     this.renderCanvas();
     this.renderGui();
@@ -146,6 +148,61 @@ export default class Scene extends Base {
 
   }
 
+  createSingleSprites = () => {
+    for(let x = -10; x<10;x++) {
+      for(let y = -10; y<10;y++) {
+        const material = new THREE.SpriteMaterial({
+          color: Math.random() * 0xffffff
+        })
+
+        const sprite = new THREE.Sprite(material);
+        sprite.position.set(0, y* 4, x* 4);
+        this.scene.add(sprite);
+      } 
+    }
+  }
+
+  createGroupSprites = () => {
+    const geom = new THREE.BufferGeometry();
+    const position = [];
+    const colors = [];
+
+    let color = new THREE.Color();
+
+    /* 使粒子在立方体范围内扩散 */
+    let n = 100, n2 = n / 2;
+
+    for(let x = -10; x<10;x++) {
+      for(let y = -10; y<10;y++) {
+        let x = Math.random() * n - n2;
+        let y = Math.random() * n - n2;
+        let z = Math.random() * n - n2;
+        position.push(x, y, z);
+
+        let vx = (x / n) + 0.5;
+        let vy = (y / n) + 0.5;
+        let vz = (z / n) + 0.5;
+        color.setRGB(vx, vy, vz);
+        colors.push(color.r, color.g, color.b);
+      } 
+    }
+
+    geom.setAttribute('position', new THREE.Float32BufferAttribute(position, 3));
+    geom.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+
+    // geom.setAttribute('position', new THREE.pa(spriteList, 15));
+    const cloud = new THREE.Points(geom, new THREE.PointsMaterial({
+      size: 2,
+      vertexColors: true,
+      color: 0xffffff,
+      sizeAttenuation: true,
+      transparent: true,
+      opacity: 0.4,
+    }));
+
+    this.scene.add(cloud);
+  }
 
   renderGui = () => {
     const controller = new Controller(this.scene);

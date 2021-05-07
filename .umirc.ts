@@ -29,6 +29,16 @@ export default defineConfig({
       name: '材质',
       path: '/material',
       component: '@/pages/material/material'
+    },
+    {
+      name: '粒子和精灵',
+      path: '/particle',
+      component: '@/pages/particle/particle'
+    },
+    {
+      name: '几何体',
+      path: '/geometry',
+      component: '@/pages/geometry/geometry'
     }
   ],
   fastRefresh: {},
