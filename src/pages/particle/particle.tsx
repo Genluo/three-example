@@ -67,6 +67,7 @@ export default class Scene extends Base {
     antialias: true,
   });
   camera = new THREE.PerspectiveCamera(70, 1, 0.1, 1000);
+  cloud!: THREE.Points<THREE.BufferGeometry, THREE.PointsMaterial>;
 
   constructor(props: any) {
     super(props);
@@ -201,6 +202,8 @@ export default class Scene extends Base {
       opacity: 0.4,
     }));
 
+    this.cloud = cloud;
+
     this.scene.add(cloud);
   }
 
@@ -224,6 +227,10 @@ export default class Scene extends Base {
         e.rotation.y += 0.1;
         e.rotation.z += 0.1;
       }
+      if (e instanceof THREE.Points) {
+        e.rotation.x += 0.005;
+        e.rotation.y += 0.005;
+      };
 
       if (e === cube) {
         cube.position.x -= 1;
