@@ -191,6 +191,7 @@ export default class Scene extends Base {
     geom.setAttribute('position', new THREE.Float32BufferAttribute(position, 3));
     geom.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
+    const texture = new THREE.TextureLoader().load('');
 
     // geom.setAttribute('position', new THREE.pa(spriteList, 15));
     const cloud = new THREE.Points(geom, new THREE.PointsMaterial({

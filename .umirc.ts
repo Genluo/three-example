@@ -33,7 +33,18 @@ export default defineConfig({
     {
       name: '粒子和精灵',
       path: '/particle',
-      component: '@/pages/particle/particle'
+      routes: [
+        {
+          name: '基础',
+          path: '/particle/particle',
+          component: '@/pages/particle/particle',
+        },
+        {
+          name: '水滴',
+          path: '/particle/raindrops',
+          component: '@/pages/particle/raindrops'
+        },
+      ]
     },
     {
       name: '几何体',
