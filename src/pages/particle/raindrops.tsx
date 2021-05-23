@@ -16,7 +16,7 @@ export default class Scene extends Base {
   constructor(props: any) {
     super(props);
     this.scene.add(this.camera);
-    this.camera.position.set(0, 50, 50);
+    this.camera.position.set(0, 0, 100);
     this.camera.lookAt(0, 0, 0);
     this.renderer.setClearColor(new THREE.Color(0xeeeeee));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -34,8 +34,8 @@ export default class Scene extends Base {
     /* 使粒子在立方体范围内扩散 */
     let n = 100, n2 = n / 2;
 
-    for(let x = -10; x<10;x++) {
-      for(let y = -10; y<10;y++) {
+    for(let x = -10; x<50;x++) {
+      for(let y = -10; y<50;y++) {
         let x = Math.random() * n - n2;
         let y = Math.random() * n - n2;
         let z = Math.random() * n - n2;
@@ -63,18 +63,24 @@ export default class Scene extends Base {
       opacity: 0.4,
     }));
 
-    this.cloud = cloud;
+    cloud.geometry.attributes.position.needsUpdate = true;
 
+    this.cloud = cloud;
     this.scene.add(cloud);
   }
 
   renderCanvas = () => {
-    this.scene.traverse(function (e) {
-      if (e instanceof THREE.Points) {
-        e.position.y -= 0.05;
-        e.position.x += 0.01;
-      };
-    });
+    var positions = this.cloud.geometry.attributes.position.array as any;
+    for (let i = 0; i < positions.length; i += 3) {
+      const v = new THREE.Vector3(positions[i], positions[i + 1], positions[i + 2]);
+      positions[i + 1] -= 0.1;
+      if (positions[i + 1] <= -50) {
+        positions[i + 1] = 50;
+      }
+    }
+    this.cloud.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    this.cloud.geometry.attributes.position.needsUpdate = true;
+
     this.renderer.render(this.scene, this.camera);
     requestAnimationFrame(this.renderCanvas);
   }
