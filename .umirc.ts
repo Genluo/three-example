@@ -49,7 +49,18 @@ export default defineConfig({
     {
       name: '几何体',
       path: '/geometry',
-      component: '@/pages/geometry/geometry'
+      component: '@/pages/geometry/geometry',
+    },
+    {
+      name: "高阶组件",
+      path: '/graphics',
+      routes: [
+        {
+          name: '组合&合并',
+          path: "/graphics/base",
+          component: '@/pages/graphics/base'
+        }
+      ]
     }
   ],
   fastRefresh: {},
