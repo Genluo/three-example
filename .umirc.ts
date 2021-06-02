@@ -59,6 +59,11 @@ export default defineConfig({
           name: '组合&合并',
           path: "/graphics/base",
           component: '@/pages/graphics/base'
+        },
+        {
+          name: '模型',
+          path: "/graphics/model",
+          component: '@/pages/graphics/model'
         }
       ]
     }
