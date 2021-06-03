@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as dat from 'dat.gui';
 import Base from '@/component/base/index';
 import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader';
@@ -31,6 +33,7 @@ export default class Scene extends Base {
     this.scene.add(spotLight);
     this.renderModel();
     this.renderCanvas();
+    new OrbitControls(this.camera, this.renderer.domElement);
   }
 
   renderPlane() {
@@ -52,16 +55,16 @@ export default class Scene extends Base {
 
   renderModel = () => {
     console.log('执行');
+
+    const loader = new GLTFLoader();
+    loader.load('http://localhost:8000/models/car/scene.gltf', (gltf) => {
+      gltf.scene.scale.set(20, 20, 20);
+      this.scene.add(gltf.scene);
+    })
+
+
     let mtlLoader = new MTLLoader();
     let objLoader = new OBJLoader();
-
-    mtlLoader.load('http://localhost:8000/models/city.mtl', (materials: any) => {
-      materials.preload()
-      objLoader.setMaterials(materials);
-      objLoader.load('http://localhost:8000/models/city.obj', (object: any) => {
-        this.scene.add(object);
-      })
-    })
   }
 
   renderCanvas = () => {
