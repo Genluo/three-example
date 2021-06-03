@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import Base from '@/component/base/index';
-import { SceneUtils } from '@/lib/sceneUtils';
-
+import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader';
 
 export default class Scene extends Base {
   scene = new THREE.Scene();
@@ -30,10 +29,7 @@ export default class Scene extends Base {
     spotLight.position.set(-40, 200, -30);
     spotLight.castShadow = true;
     this.scene.add(spotLight);
-
-    this.renderPlane();
-    this.renderMerge();
-    this.renderGroup();
+    this.renderModel();
     this.renderCanvas();
   }
 
@@ -54,40 +50,24 @@ export default class Scene extends Base {
     this.scene.add(plane);
   }
 
-  renderGroup() {
-    const sphere = new THREE.Mesh(new THREE.SphereGeometry(10, 10, 10), new THREE.MeshLambertMaterial({ color: 0x3E3E3E }));
-    const cube = new THREE.Mesh(new THREE.BoxGeometry(30, 30, 30), new THREE.MeshLambertMaterial({ color: 0x3E3E3E }));
-    cube.castShadow = true;
-    sphere.castShadow = true;
-    const group = new THREE.Group();
-    sphere.position.x = -100;
-    cube.position.x = 30;
-    group.add(cube);
-    group.add(sphere);
-    this.scene.add(group);
-  }
+  renderModel = () => {
+    console.log('执行');
+    let mtlLoader = new MTLLoader();
+    let objLoader = new OBJLoader();
 
-  renderMerge() {
-    const geometry = new THREE.BufferGeometry();
-    const createCube = (i: number) => {
-      const cube = new THREE.BoxBufferGeometry(10,20,10);
-      return cube;
-    }
-    for(let i = 0; i < 100; i++) {
-      geometry.merge(createCube(i));
-    }
-    const material = new THREE.MeshBasicMaterial( { color: 0xC8C8C8} );
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.y = -10;
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    this.scene.add(mesh);
+    mtlLoader.load('http://localhost:8000/models/city.mtl', (materials: any) => {
+      materials.preload()
+      objLoader.setMaterials(materials);
+      objLoader.load('http://localhost:8000/models/city.obj', (object: any) => {
+        this.scene.add(object);
+      })
+    })
   }
 
   renderCanvas = () => {
     this.scene.traverse((e) => {
       if (e instanceof THREE.Group) {
-        e.rotateY(0.01);
+        // e.rotateY(0.01);
       }
     });
     this.renderer.render(this.scene, this.camera);

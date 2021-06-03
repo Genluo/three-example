@@ -61,7 +61,7 @@ export default defineConfig({
           component: '@/pages/graphics/base'
         },
         {
-          name: '模型',
+          name: '模型加载',
           path: "/graphics/model",
           component: '@/pages/graphics/model'
         }

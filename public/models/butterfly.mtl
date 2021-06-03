@@ -40,7 +40,7 @@ d 0.000000
 illum 2
 
 #change these
-map_Kd butterflywings.png
-map_d butterflywings.png
+map_Kd http://localhost:8000/model/butterflywings.png
+map_d http://localhost:8000/model/butterflywings.png
 
 
