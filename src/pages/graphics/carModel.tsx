@@ -23,34 +23,18 @@ export default class Scene extends Base {
     this.renderer.setClearColor(new THREE.Color(0xeeeeee));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    var ambientLight = new THREE.AmbientLight(0x0c0c0c);
-    this.scene.add(ambientLight);
     
     // add spotlight for the shadows
-    var spotLight = new THREE.SpotLight(0xffffff);
-    spotLight.position.set(-40, 200, -30);
-    spotLight.castShadow = true;
-    this.scene.add(spotLight);
+
+    this.scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+    var light = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI);
+    light.position.set(0, 50, 0);
+    this.scene.add(light);
+
     this.renderModel();
     this.renderCanvas();
+    this.renderer.outputEncoding = THREE.sRGBEncoding;
     new OrbitControls(this.camera, this.renderer.domElement);
-  }
-
-  renderPlane() {
-    // create the ground plane
-    var planeGeometry = new THREE.PlaneGeometry(600, 400, 1, 10);
-    var planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
-    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.receiveShadow = true;
-
-    // rotate and position the plane
-    plane.rotation.x = -0.5 * Math.PI;
-    plane.position.x = 0;
-    plane.position.y = -30;
-    plane.position.z = 0;
-
-    // add the plane to the scene
-    this.scene.add(plane);
   }
 
   renderModel = () => {
@@ -58,19 +42,15 @@ export default class Scene extends Base {
 
     const loader = new GLTFLoader();
     loader.load('http://localhost:8000/models/car/scene.gltf', (gltf) => {
-      gltf.scene.scale.set(20, 20, 20);
+      gltf.scene.scale.set(30, 30, 30);
       this.scene.add(gltf.scene);
     })
-
-
-    let mtlLoader = new MTLLoader();
-    let objLoader = new OBJLoader();
   }
 
   renderCanvas = () => {
     this.scene.traverse((e) => {
       if (e instanceof THREE.Group) {
-        // e.rotateY(0.01);
+        e.rotateY(-0.01);
       }
     });
     this.renderer.render(this.scene, this.camera);
