@@ -61,9 +61,14 @@ export default defineConfig({
           component: '@/pages/graphics/base'
         },
         {
-          name: '模型加载',
+          name: '基础模型',
           path: "/graphics/model",
           component: '@/pages/graphics/model'
+        },
+        {
+          name: '汽车模型',
+          path: "/graphics/carModel",
+          component: '@/pages/graphics/carModel'
         }
       ]
     }
