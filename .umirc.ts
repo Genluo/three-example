@@ -71,6 +71,17 @@ export default defineConfig({
           component: '@/pages/graphics/carModel'
         }
       ]
+    },
+    {
+      name: '动画',
+      path: '/animate',
+      routes: [
+        {
+          name: '基础',
+          path: '/animate/base',
+          component: '@/pages/animate/base'
+        }
+      ]
     }
   ],
   fastRefresh: {},
