@@ -77,7 +77,7 @@ export default defineConfig({
       path: '/animate',
       routes: [
         {
-          name: '基础',
+          name: '鼠标事件',
           path: '/animate/base',
           component: '@/pages/animate/base'
         }
