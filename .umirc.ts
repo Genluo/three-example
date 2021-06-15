@@ -80,6 +80,11 @@ export default defineConfig({
           name: '鼠标事件',
           path: '/animate/base',
           component: '@/pages/animate/base'
+        },
+        {
+          name: '变形&骨骼动画',
+          path: '/animate/animate',
+          component: '@/pages/animate/animate'
         }
       ]
     }
