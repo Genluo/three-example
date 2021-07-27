@@ -92,9 +92,13 @@ export default defineConfig({
       name: '初始化',
       path: '/init',
       routes: [{
-        name: '原生webGL',
+        name: '点的绘制',
         path: '/init/webgl',
         component: '@/pages/init/index'
+      }, {
+        name: '三角形绘制',
+        path: '/init/triangles',
+        component: '@/pages/init/triangles'
       }]
     }
   ],
