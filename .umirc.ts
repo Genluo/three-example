@@ -87,6 +87,15 @@ export default defineConfig({
           component: '@/pages/animate/animate'
         }
       ]
+    },
+    {
+      name: '初始化',
+      path: '/init',
+      routes: [{
+        name: '原生webGL',
+        path: '/init/webgl',
+        component: '@/pages/init/index'
+      }]
     }
   ],
   fastRefresh: {},

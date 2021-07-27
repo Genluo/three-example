@@ -1,0 +1,65 @@
+[
+    {
+        "fields": {
+            "ultronUIVOType": "tmgStyle",
+            "cornerType": "both",
+            "needMask": true,
+            "cardMargin": "9",
+            "cardPadding": "12",
+            "topPadding": "17",
+            "topPaddingInner": "18",
+            "bottomPadding": "17",
+            "cardRadius": "12",
+            "mainSubMargin": "11",
+            "sublineMargin": "7",
+            "title": {
+                "name": "以旧换新",
+                "serverName": "一站式卖旧换新服务",
+                "type": "0",
+                "url": "https://taobao.com"
+            },
+            "renewData": {
+                "threshold":"最高可抵100元",
+                "thresholdRed": "",
+                "subsidies": "可得额外补贴200元",
+                "total": "23.5万",
+                "newPic": "https://gw.alicdn.com/imgextra/i1/O1CN01vD6BKg27o91M9UNAu_!!6000000007843-2-tps-68-94.png",
+                "oldPic": "https://img.alicdn.com/imgextra/i1/O1CN019AFHBq1hVf1epkBKW_!!6000000004283-2-tps-750-1422.png",
+                "newName": "新机",
+                "oldName": "旧机",
+                "button": "https://gw.alicdn.com/imgextra/i4/O1CN01ODC58f1OEjh3TGX49_!!6000000001674-2-tps-260-96.png",
+                "icon": "https://img.alicdn.com/imgextra/i2/O1CN01bLdHXh1ykB3DkM8JE_!!6000000006616-2-tps-160-160.png"
+            },
+            "renewDataV2": {
+              "idleFishEntrance": {
+                "icon": "",
+                "mainText": [
+                  {
+                    "style": "normal",
+                    "text": "本机回收最高可得"
+                  },
+                  {
+                    "style": "strong",
+                    "text": "3259元"
+                  }
+                ]
+              },
+              "cardV2": {
+                "icon": "",
+                "button": "",
+                "mainText": [
+                  {
+                    "style": "normal",
+                    "text": "本机回收最高可得"
+                  },
+                  {
+                    "style": "strong",
+                    "text": "1300元"
+                  }
+                ],
+                "sbuText": "限时补贴最高350元"
+              }
+            }
+        }
+    }
+]
