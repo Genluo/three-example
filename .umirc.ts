@@ -99,6 +99,10 @@ export default defineConfig({
         name: '三角形绘制',
         path: '/init/triangles',
         component: '@/pages/init/triangles'
+      }, {
+        name: '图片绘制',
+        path: '/init/pic',
+        component: '@/pages/init/pic'
       }]
     }
   ],
